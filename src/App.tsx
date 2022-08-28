@@ -1,5 +1,7 @@
 import React from 'react';
 import { Card } from './components/card/Card';
+import { Seat } from './components/seat/Seat';
+import { Table } from './components/table/Table';
 import { Card as CardType } from './types/Card';
 import { CardSuit } from './types/CardSuit';
 import { CardValue } from './types/CardValue';
@@ -12,11 +14,13 @@ function App() {
   const [ players, setPlayers ] = React.useState<Player[]>([{
     id: Math.random().toString(),
     name: 'Josh',
-    stack: 1000
+    stack: 1000,
+    seat: 1
   }, {
     id: Math.random().toString(),
-    name: 'Your mum',
-    stack: 1000
+    name: 'John',
+    stack: 1000,
+    seat: 2
   }]);
 
   const [ currentHand, setCurrentHand ] = React.useState<Hand>(null);
@@ -27,8 +31,9 @@ function App() {
   }
 
   return (
-    <div>
-      <Card suit={CardSuit.Heart} value={CardValue.Jack} />
+    <div className='position-relative'>
+      <Table />
+      {players.map(p => <Seat key={p.id} player={p} hand={currentHand?.players[p.id]} />)}
 
       <button className='btn btn-dark' onClick={onStart}>Start</button>
     </div>

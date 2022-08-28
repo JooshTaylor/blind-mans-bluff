@@ -1,8 +1,6 @@
 import { Card } from "./Card";
-import { CardSuit } from "./CardSuit";
-import { CardValue } from "./CardValue";
 
-interface PlayerHand {
+export interface PlayerHand {
   card1: Card;
   card2: Card;
 }
