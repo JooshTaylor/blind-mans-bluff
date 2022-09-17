@@ -35,7 +35,9 @@ function App() {
       <Table />
       {players.map(p => <Seat key={p.id} player={p} hand={currentHand?.players[p.id]} />)}
 
-      <button className='btn btn-dark' onClick={onStart}>Start</button>
+      {!hasStarted && (
+        <button className='btn btn-dark' onClick={onStart}>Start</button>
+      )}
     </div>
   );
 }
